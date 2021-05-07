@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<math.h>
+#define PI 3.14
+#define PTS 128
+float x[PTS];
+float y[PTS];
+
+
+void main()
+{
+    int i;
+    for (i = 0 ; i < PTS ; i++)
+    {
+        x[i] = sin(2*PI*i*20/128.0);
+        printf("%f\n",x[i]);
+
+    }
+}

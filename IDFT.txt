@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<math.h>
+#define pi 3.14
+
+typedef struct {
+	float real;
+	float img;
+	}com;
+
+void main()
+{
+com x[20],y[20],temp[20];
+int pofd,i,k,n;
+float WN,c,s,WK;
+for(i=0;i<=20;i++)			/*make output array value to 0.0*/ 
+	{
+		y[i].real=0.0;
+		y[i].img=0.0;
+	}
+	printf("\nEnter the no of points of idft \t:");
+	scanf("%d",&pofd);
+	printf("\nEnter the function variables of f(n) to calculate IDFT in the 
+                         complex form (e.g. 3+j4 enter as a 3 4)\n");
+	for(i=0;i<pofd;i++)
+	{
+		scanf("%f\t%f",&x[i].real,&x[i].img);
+	}
+	WN=(2*pi)/pofd;
+	for(k=0;k<pofd;k++)
+	{
+		temp[k].real=0.0;
+		temp[k].img=0.0;
+
+			WK=k*WN;
+			for(n=0;n<pofd;n++)			/*DFT calculation*/
+			{
+				c=cos(WK*n);
+				s=sin(WK*n);
+				temp[k].real=temp[k].real+(x[n].real*c)-
+                                                               (x[n].img*s);
+				                         
+                                           temp[k].img=temp[k].img+(x[n].img*c)+
+                                                               (x[n].real*s);
+			}
+
+
+			 y[k].real=1/sqrt(pofd)*temp[k].real;
+			 y[k].img=1/sqrt(pofd)*temp[k].img;
+
+
+		 }
+/*Display values of F[k]*/
+
+printf("\nIDFT OF GIVEN SIGNAL:-\n");		 for(i=0;i<pofd;i++)
+		 {
+			printf("\nf(%d)=(%0.1f)+j(%0.1f)\n",i,y[i].real,y[i].img);
+		 }
+}
